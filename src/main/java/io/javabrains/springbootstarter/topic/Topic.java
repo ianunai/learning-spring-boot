@@ -2,10 +2,15 @@ package io.javabrains.springbootstarter.topic;
 
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 @Data
 @NoArgsConstructor
 public class Topic {
 
+    @Id
     @Getter @Setter private String id;
     @Getter @Setter private String name;
     @Getter @Setter private String description;
