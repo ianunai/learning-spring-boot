@@ -19,12 +19,6 @@ public class TopicService {
     @Autowired
     private TopicRepository topicRepository;
 
-    private List<Topic> topics = new ArrayList<>(Arrays.asList(
-            new Topic("spring", "Spring Framework", "Spring Framework Description"),
-            new Topic("spring-boot", "Spring Boot Framework", "Spring Boot Framework Description"),
-            new Topic("spring-mvc", "Spring MVC Framework", "Spring MVC Framework Description")
-    ));
-
     public List<Topic> getAllTopics() {
         List<Topic> topics = new ArrayList<>();
         topicRepository.findAll().forEach(topics::add);
