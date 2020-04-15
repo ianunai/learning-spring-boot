@@ -1,9 +1,6 @@
 package io.javabrains.springbootstarter.topic;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Data
 @NoArgsConstructor

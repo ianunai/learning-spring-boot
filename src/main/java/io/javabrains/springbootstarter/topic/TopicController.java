@@ -1,7 +1,7 @@
 package io.javabrains.springbootstarter.topic;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,18 +9,32 @@ import java.util.List;
 @RestController
 public class TopicController {
 
-    /**
-     * 1. Spring automatically converts the return list into a JSON
-     * 2. The key in the properties of each JSON object returned correspond to the properties of the Java class.
-     */
+    @Autowired
+    private TopicService topicService;
 
     @RequestMapping("/topics")
     public List<Topic> getAllTopics() {
-        return Arrays.asList(
-                new Topic("spring", "Spring Framework", "Spring Framework Description"),
-                new Topic("spring-boot", "Spring Boot Framework", "Spring Boot Framework Description"),
-                new Topic("spring-mvc", "Spring MVC Framework", "Spring MVC Framework Description")
-        );
+        return topicService.getAllTopics();
+    }
+
+    @RequestMapping("/topics/{id}")
+    public Topic getTopic(@PathVariable String id) {
+        return topicService.getTopic(id);
+    }
+
+    @RequestMapping(value = "/topics", method = RequestMethod.POST)
+    public void addTopic(@RequestBody Topic topic) {
+        topicService.addTopic(topic);
+    }
+
+    @RequestMapping(value = "/topics/{id}", method = RequestMethod.PUT)
+    public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
+        topicService.updateTopic(id, topic);
+    }
+
+    @RequestMapping(value = "/topics/{id}", method = RequestMethod.DELETE)
+    public void deleteTopic(@PathVariable String id) {
+        topicService.deleteTopic(id);
     }
 
 }
